@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../store/tweets";
 import uuid from "react-uuid";
 
@@ -10,13 +10,14 @@ const AddPost = () => {
   const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
+  const username = useSelector((state) => state.tweets.username);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       addPost({
         id: uuid(),
-        author: "bartu",
+        author: username,
         image: imagePreview,
         message: postInput,
         likes: [],

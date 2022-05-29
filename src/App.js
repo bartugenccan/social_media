@@ -1,17 +1,29 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTweets, getUsername } from "./store/tweets";
 
 // components
 import Feed from "./components/Feed";
+import GetUsername from "./components/GetUsername";
 
 const App = () => {
-  const tweets = useSelector((state) => state.tweets.list);
-  console.log(tweets);
+  const dispatch = useDispatch();
+  const username = useSelector((state) => state.tweets.username);
+
+  useEffect(() => {
+    dispatch(fetchTweets());
+  }, []);
 
   return (
-    <div>
-      <Feed tweets={tweets} />
-    </div>
+    <>
+      {username != "" ? (
+        <Feed />
+      ) : (
+        <div className="w-1/2 mt-5 mx-auto">
+          <GetUsername />
+        </div>
+      )}
+    </>
   );
 };
 
