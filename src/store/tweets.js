@@ -7,7 +7,6 @@ export const fetchTweets = createAsyncThunk(
     const res = await axios
       .get("https://fake-tweets-api.herokuapp.com/posts")
       .then((response) => response.data);
-
     return res;
   }
 );
@@ -37,7 +36,6 @@ export const tweetsSlice = createSlice({
       .addCase(fetchTweets.fulfilled, (state, action) => {
         console.log("fulfilled");
         state.list = action.payload;
-        console.log(action.payload);
       })
       .addCase(fetchTweets.rejected, (state) => {
         console.log("rejected");

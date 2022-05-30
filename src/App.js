@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTweets, getUsername } from "./store/tweets";
+import { fetchTweets } from "./store/tweets";
 
 // components
 import Feed from "./components/Feed";
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      {username != "" ? (
+      {username !== "" ? (
         <Feed />
       ) : (
         <div className="w-1/2 mt-5 mx-auto">
